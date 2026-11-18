@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pascal Labs — Systematic trading and market-making technology</title>
+<meta name="description" content="Pascal Labs builds automated, low-latency market-making systems for event and crypto markets, trading its own capital.">
+<meta name="theme-color" content="#0C0D0E">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://pascallabs.ai/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pascal Labs">
+<meta property="og:title" content="Pascal Labs">
+<meta property="og:description" content="Systematic trading and market-making technology.">
+<meta property="og:url" content="https://pascallabs.ai/">
+<meta property="og:image" content="https://pascallabs.ai/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pascal Labs">
+<meta name="twitter:description" content="Systematic trading and market-making technology.">
+<meta name="twitter:image" content="https://pascallabs.ai/og.png">
+<link rel="preload" href="fonts/InstrumentSans-var.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Instrument Sans";src:url("fonts/InstrumentSans-var.woff2") format("woff2");font-weight:400 700;font-stretch:75% 100%;font-display:swap}
+:root{
+  --ink:#0C0D0E;--ink-0:rgba(12,13,14,0);--paper:#EDEDEA;--fog:#8F918F;
+  --bid:#B9BCBA;--ask:#FF6B1A;--rule:rgba(237,237,234,.12);--rule-soft:rgba(237,237,234,.08);--focus:#FF6B1A;
+  --book-bid:196 199 197;--book-ask:112 116 116;--live:255 107 26;--mid-alpha:.55;--book-alpha:.80;
+  --gutter:clamp(20px,5vw,72px);--measure:46ch;
+}
+*{box-sizing:border-box}
+html{background:var(--ink);color:var(--paper);-webkit-text-size-adjust:100%}
+body{margin:0;font-family:"Instrument Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:1.0625rem;line-height:1.55;font-weight:400;font-stretch:100%;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+a:focus-visible{outline:2px solid var(--focus);outline-offset:4px;border-radius:2px}
+
+.top{position:absolute;inset:0 0 auto 0;z-index:2;display:flex;align-items:baseline;justify-content:space-between;padding:clamp(20px,3.2vw,40px) var(--gutter)}
+.mark{font-weight:640;font-stretch:78%;font-size:1.25rem;letter-spacing:-.01em}
+.top a.mail{color:var(--fog);font-size:.95rem;transition:color .2s}
+.top a.mail:hover{color:var(--paper)}
+
+.hero{position:relative;min-height:max(620px,88svh);display:flex;align-items:flex-start;overflow:hidden;isolation:isolate}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:22%;background:linear-gradient(to bottom,var(--ink-0),var(--ink));z-index:-1;pointer-events:none}
+.copy{padding:clamp(140px,22vh,230px) var(--gutter) 0;max-width:1180px}
+h1{margin:0;font-weight:500;font-stretch:82%;font-size:clamp(2.6rem,6.4vw,5.6rem);line-height:1.0;letter-spacing:-.025em;max-width:13.5ch}
+.lede{margin:clamp(22px,3vw,34px) 0 0;max-width:var(--measure);color:var(--fog);font-size:clamp(1.0625rem,1.35vw,1.25rem);line-height:1.5}
+
+.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(28px,4vw,64px);padding:clamp(48px,7vw,96px) var(--gutter) clamp(56px,8vw,112px);border-top:1px solid var(--rule);max-width:1440px}
+.pillars h2{margin:0 0 .6em;font-weight:560;font-stretch:88%;font-size:clamp(1.35rem,1.9vw,1.65rem);letter-spacing:-.01em}
+.pillars p{margin:0;color:var(--fog);max-width:34ch}
+.pillars h2::before{content:"";display:block;width:28px;height:2px;margin-bottom:18px;background:linear-gradient(90deg,var(--bid) 0 46%,transparent 46% 54%,var(--ask) 54%)}
+
+footer{display:flex;flex-wrap:wrap;gap:10px 32px;padding:28px var(--gutter) 40px;color:var(--fog);font-size:.9rem;border-top:1px solid var(--rule-soft)}
+footer a:hover{color:var(--paper)}
+
+@media (max-width:760px){
+  .pillars{grid-template-columns:1fr}
+  .hero{min-height:max(560px,84svh)}
+  .copy{padding-top:120px}
+  .top a.mail{font-size:.85rem}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="mark" href="/" aria-label="Pascal Labs, home">Pascal Labs</a>
+  <a class="mail" href="mailto:contact@pascallabs.ai">contact@pascallabs.ai</a>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="h">
+    <canvas id="book" aria-hidden="true"></canvas>
+    <div class="copy">
+      <h1 id="h">Systematic trading and market-making technology.</h1>
+      <p class="lede">We build automated, low-latency market-making systems for event and crypto markets, trading our own capital.</p>
+    </div>
+  </section>
+
+  <section class="pillars" id="what" aria-label="What we do">
+    <div>
+      <h2>Research</h2>
+      <p>Short-horizon predictive models built on public market data.</p>
+    </div>
+    <div>
+      <h2>Infrastructure</h2>
+      <p>Low-latency, cloud-native execution.</p>
+    </div>
+    <div>
+      <h2>Risk</h2>
+      <p>Pre-registered testing, independent verification, hard limits.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>Pascal Labs LLC</span>
+  <span>Austin, Texas</span>
+  <a href="mailto:contact@pascallabs.ai">contact@pascallabs.ai</a>
+  <span>© 2026</span>
+</footer>
+
+<script>
+/* A live order book: resting bids (left) and asks (right) around a drifting mid.
+   Purely illustrative, generated in the browser; no data, no network. */
+(function(){
+  var c=document.getElementById("book"); if(!c||!c.getContext) return;
+  var x=c.getContext("2d"), reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var W=0,H=0,dpr=1,step=7,levels=0,bids=[],asks=[],flashB=0,flashA=0,running=true,last=0,acc=0,lastH=0.5,pulse=0;
+  var cs=getComputedStyle(document.documentElement);function rgb(n){return cs.getPropertyValue(n).trim().split(/[ ,]+/).map(Number);}
+  var BID=rgb("--book-bid"), ASK=rgb("--book-ask"), LIVE=rgb("--live"), MIDA=parseFloat(cs.getPropertyValue("--mid-alpha"))||0.22, BMAX=parseFloat(cs.getPropertyValue("--book-alpha"))||0.88;
+  function prof(i){ // typical depth: thin at the touch, a hump a few ticks out, long tail
+    return 0.22+0.70*Math.exp(-Math.pow((i-10)/12,2))+0.28*Math.exp(-i/45);
+  }
+  function seed(n){var a=[];for(var i=0;i<n;i++)a.push(prof(i)*(0.6+Math.random()*0.8));return a;}
+  function size(){
+    var r=c.getBoundingClientRect(); dpr=Math.min(window.devicePixelRatio||1,2);
+    W=r.width; H=r.height; c.width=Math.round(W*dpr); c.height=Math.round(H*dpr);
+    x.setTransform(dpr,0,0,dpr,0,0);
+    step=W<760?6:7; var need=Math.ceil(W/step)+4;
+    if(need>levels){bids=bids.concat(seed(need-bids.length));asks=asks.concat(seed(need-asks.length));levels=need;}
+  }
+  function tick(){
+    for(var i=0;i<levels;i++){
+      var t=prof(i);
+      bids[i]+= (t-bids[i])*0.04+(Math.random()-0.5)*0.06*t;
+      asks[i]+= (t-asks[i])*0.04+(Math.random()-0.5)*0.06*t;
+      if(bids[i]<0.02)bids[i]=0.02; if(asks[i]<0.02)asks[i]=0.02;
+    }
+    var r=Math.random();
+    if(r<0.07){ // a buyer lifts the best ask
+      lastH=asks[0]; asks[0]*=0.35; flashA=1; pulse=1;
+      if(asks[0]<0.08&&Math.random()<0.55){asks.shift();asks.push(prof(levels)*0.8);bids.unshift(0.12);bids.pop();}
+    }else if(r<0.14){ // a seller hits the best bid
+      lastH=bids[0]; bids[0]*=0.35; flashB=1; pulse=1;
+      if(bids[0]<0.08&&Math.random()<0.55){bids.shift();bids.push(prof(levels)*0.8);asks.unshift(0.12);asks.pop();}
+    }
+    flashA*=0.86; flashB*=0.86; pulse*=0.9;
+  }
+  function draw(){
+    x.clearRect(0,0,W,H);
+    var mid=Math.round(W*(W<760?0.70:0.64)), base=H*0.97, maxh=H*(W<760?0.26:0.31);
+    var reach=Math.max(mid,W-mid);
+    // mid hairline
+    var g=x.createLinearGradient(0,0,0,H); var L=LIVE.join(","); g.addColorStop(0,"rgba("+L+",0)"); var s0=W<760?0.58:0.40; g.addColorStop(s0,"rgba("+L+",0)"); g.addColorStop(Math.min(0.9,s0+0.22),"rgba("+L+","+(MIDA*0.45).toFixed(3)+")"); g.addColorStop(1,"rgba("+L+","+MIDA+")");
+    x.fillStyle=g; x.fillRect(mid-0.5,0,1,H);
+    for(var i=0;i<levels;i++){
+      var d=(i+1)*step, fade=Math.max(0,1-d/reach), a=(0.10+0.78*Math.pow(fade,1.6))*BMAX/0.88;
+      var bw=Math.max(1.5,step-3.2);
+      var xb=mid-d-bw/2, xa=mid+d-bw/2;
+      if(xb>-step){var hb=bids[i]*maxh, fb=i===0?flashB:0;
+        x.fillStyle="rgba("+(BID[0]+(LIVE[0]-BID[0])*fb|0)+","+(BID[1]+(LIVE[1]-BID[1])*fb|0)+","+(BID[2]+(LIVE[2]-BID[2])*fb|0)+","+Math.max(a,fb).toFixed(3)+")";
+        x.fillRect(xb,base-hb,bw,hb);}
+      if(xa<W+step){var ha=asks[i]*maxh, fa=i===0?flashA:0;
+        x.fillStyle="rgba("+(ASK[0]+(LIVE[0]-ASK[0])*fa|0)+","+(ASK[1]+(LIVE[1]-ASK[1])*fa|0)+","+(ASK[2]+(LIVE[2]-ASK[2])*fa|0)+","+Math.max(a,fa).toFixed(3)+")";
+        x.fillRect(xa,base-ha,bw,ha);}
+    }
+    // last trade: a small marker on the mid line at the size it took, pulsing on each trade
+    var ty=base-Math.max(0.12,lastH)*maxh-10, r=2.6+3.2*pulse;
+    x.fillStyle="rgba("+L+","+(0.25*pulse).toFixed(3)+")"; x.beginPath(); x.arc(mid,ty,r+5,0,6.2832); x.fill();
+    x.fillStyle="rgb("+L+")"; x.beginPath(); x.arc(mid,ty,r,0,6.2832); x.fill();
+    x.fillRect(mid-9,ty-0.5,18,1);
+  }
+  function loop(t){
+    if(!running) return;
+    var dt=Math.min(100,t-(last||t)); last=t; acc+=dt;
+    if(acc>=33){acc=0; tick(); draw();}     // ~30 fps is plenty
+    requestAnimationFrame(loop);
+  }
+  size(); for(var k=0;k<40;k++) tick(); draw();
+  window.addEventListener("resize",function(){size();draw();},{passive:true});
+  if(reduce) return;                         // one still frame when motion is reduced
+  document.addEventListener("visibilitychange",function(){
+    if(document.hidden){running=false;}else if(!running){running=true;last=0;requestAnimationFrame(loop);}
+  });
+  if("IntersectionObserver" in window){
+    new IntersectionObserver(function(e){
+      var v=e[0].isIntersecting;
+      if(!v){running=false;}else if(!running&&!document.hidden){running=true;last=0;requestAnimationFrame(loop);}
+    }).observe(c);
+  }
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
